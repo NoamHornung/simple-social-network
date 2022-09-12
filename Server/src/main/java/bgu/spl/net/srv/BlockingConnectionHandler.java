@@ -31,7 +31,6 @@ public class BlockingConnectionHandler<T> implements Runnable, ConnectionHandler
         this.encdec = reader;
         this.protocol = protocol;
         this.connections = connections;
-        //todo when to add the manager to the protocol???
         ((BidiMessagingProtocolImpl<T>)this.protocol).setManager(manager);
 
     }
