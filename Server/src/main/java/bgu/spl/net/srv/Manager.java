@@ -47,7 +47,7 @@ public class Manager<T> {
 
         if (existingConnId == null){ //if the userName doesn't already exist
             User user = idsAndUsers.putIfAbsent(connId, new User(userName,password,birthday));
-            if(user == null){ //if the connId doesn't already have a user todo ok?
+            if(user == null){ //if the connId doesn't already have a user
                 return true;
             }else{
                 userNamesAndIds.remove(userName,connId);
@@ -197,7 +197,7 @@ public class Manager<T> {
             }
         }
 
-        for(String userName : tags){ //sends a notification to the tagged users //todo if the tagged user blocked him?
+        for(String userName : tags){ //sends a notification to the tagged users
             if(userNamesAndIds.containsKey(userName)){
                 int id = userNamesAndIds.get(userName);
                 User user1 = idsAndUsers.get(id);
@@ -226,7 +226,7 @@ public class Manager<T> {
         if(userNamesAndIds.get(userName) == null){
             return false;
         }
-        User reciepient = idsAndUsers.get(userNamesAndIds.get(userName)); //todo check not null
+        User reciepient = idsAndUsers.get(userNamesAndIds.get(userName));
         if( user == null || !user.loggedIn || reciepient == null || !user.followers.contains(userName)){
             return false;
         }
