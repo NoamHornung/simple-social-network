@@ -20,7 +20,7 @@ void SocketListener::run() {
                 std::cout << "Disconnected. Exiting...\n" << std::endl;
                 break;
             }
-          //  std::lock_guard <std::mutex> lock(_mutex);
+          
             std::cout << response << std::endl;
 
             if(response == "ACK 3"){ //ack for logout request todo how to stop the other thread?
@@ -42,11 +42,7 @@ void InputReader::run() {
     while(!shouldTerminate){
         const short bufsize = 1024;
         char buf[bufsize];
-
-        // if(gotResponse) {
-        // std::lock_guard<std::mutex> lock(_mutex);
         std::cin.getline(buf, bufsize, '\n'); //read user input
-
         char newCommand[1024];
         std::string opcodeStr;
         unsigned int i = 0;
@@ -56,16 +52,12 @@ void InputReader::run() {
             i = i + 1;
         }
         bool sentSuccessfully = encdec.buildCommandAndSend(buf, newCommand,opcodeStr);
-
-        //bool sentSuccessfully = encdec.buildCommandAndSend(buf); //sends the command as byte array
-        //gotResponse = false;
         if (!sentSuccessfully) {
             std::cout << "Disconnected. Exiting...\n" << std::endl;
             break;
         }
 
         if(opcodeStr == "LOGOUT"){
-            //boost::mutex::scoped_lock lock(_mutex);
             while(!logoutStatus.received){
                 //wait
             }
