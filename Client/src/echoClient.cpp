@@ -24,8 +24,6 @@ int main (int argc, char *argv[]) {
         return 1;
     }
 
-   // LogoutStatus logoutStatus = LogoutStatus();
-   // logoutStatus = false;
     EncoderDecoder encdec(connectionHandler);
     std::mutex mutex;
     SocketListener taskListener(mutex, encdec);
@@ -34,9 +32,6 @@ int main (int argc, char *argv[]) {
     boost::thread threadListener(&SocketListener::run, &taskListener);
     boost::thread threadInputReader(&InputReader::run, &taskInputReader);
     threadListener.join();
-    //threadInputReader.interruption_requested();
-    //taskInputReader.terminate();
-    //taskInputReader.receivedLogoutResponse = true;
     threadInputReader.join();
 
     return 0;
