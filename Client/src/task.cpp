@@ -23,7 +23,7 @@ void SocketListener::run() {
           
             std::cout << response << std::endl;
 
-            if(response == "ACK 3"){ //ack for logout request todo how to stop the other thread?
+            if(response == "ACK 3"){ //ack for logout request
                 logoutStatus.gotAckResponse = true;
                 logoutStatus.received = true;
                 break;
