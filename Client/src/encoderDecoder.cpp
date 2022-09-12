@@ -71,14 +71,6 @@ bool EncoderDecoder::decode(std::string &response) {
 }
 
 bool EncoderDecoder::buildCommandAndSend(char (&command)[1024], char (&newCommand)[1024], std::string opcodeStr) {
-    //char newCommand[1024];
-//    std::string opcodeStr;
-//    unsigned int i = 0;
-//    //get the command type (first word)
-//    while(command[i] != ' ' && command[i] != '\0'){
-//        opcodeStr += command[i];
-//        i = i + 1;
-//    }
     int len = 2;
     int i = opcodeStr.length()+1;
     if(opcodeStr == "REGISTER"){
@@ -91,12 +83,8 @@ bool EncoderDecoder::buildCommandAndSend(char (&command)[1024], char (&newComman
         len = copyArrayAndReplaceSpaces(command, newCommand, i, len);
         newCommand[len] = '\0';
         len++;
-//        newCommand[len] = '1';
-//        len++;
-
     }else if(opcodeStr == "LOGOUT"){
         shortToBytes(3, newCommand);
-
     }else if(opcodeStr == "FOLLOW"){
         shortToBytes(4, newCommand);
         newCommand[len] = command[i]; //copy follow/unfollow byte
