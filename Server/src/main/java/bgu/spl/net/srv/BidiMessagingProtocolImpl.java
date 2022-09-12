@@ -12,9 +12,6 @@ public class BidiMessagingProtocolImpl<Serializable> implements BidiMessagingPro
     boolean shouldTerminate = false;
     Manager<Serializable> manager;
 
-//    //public BidiMessagingProtocolImpl(Manager<Serializable> manager){
-//        this.manager = manager;
-//    }
 
     public void setManager(Manager<Serializable> manager){ //TODO???
         this.manager = manager;
@@ -36,8 +33,6 @@ public class BidiMessagingProtocolImpl<Serializable> implements BidiMessagingPro
                 connections.disconnect(connectionId);
             }
         }
-        //response is sent by connection.send
-        //TODO: the response is ignored...!
     }
 
     @Override
