@@ -93,9 +93,6 @@ public class MessageEncoderDecoderImpl<Serializable> implements MessageEncoderDe
     public Command buildFollowCommand(){
         byte followUnfollow = bytes[2];
         String userName = new String(bytes, 3, len - 3);
-//        ArrayList<String> splitCommand = splitArray();
-//        splitCommand.remove(0);
-//        String userName = splitCommand.remove(0);
         return new CommandFollow(followUnfollow,userName);
     }
 
