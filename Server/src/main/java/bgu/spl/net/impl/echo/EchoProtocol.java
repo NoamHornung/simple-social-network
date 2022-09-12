@@ -21,8 +21,7 @@ public class EchoProtocol implements BidiMessagingProtocol<String> {
     public void process(String msg) {
         shouldTerminate = "bye".equals(msg);
         System.out.println("[" + LocalDateTime.now() + "]: " + msg);
-        connections.send(connectionId,createEcho(msg)); //TODO ignores the response...
-        //return createEcho(msg);
+        connections.send(connectionId,createEcho(msg)); 
     }
 
     private String createEcho(String message) {
