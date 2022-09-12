@@ -14,11 +14,8 @@ extern LogoutStatus logoutStatus;
 class Task{
 public:
     std::mutex &_mutex;
-    //bool gotResponse;
     bool shouldTerminate;
     EncoderDecoder encdec;
-    //LogoutStatus logoutStatus;
-    //Task(std::mutex& mutex, EncoderDecoder& encoderDecoder, LogoutStatus& logoutStatus);
     Task(std::mutex& mutex, EncoderDecoder& encoderDecoder);
     virtual void run() = 0;
     void terminate();
@@ -38,7 +35,6 @@ public:
     void run();
     bool buildCommandAndSend(char (&command)[1024]);
     ~InputReader();
-    //bool receivedLogoutResponse;
 };
 
 #endif
